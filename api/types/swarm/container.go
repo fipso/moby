@@ -117,4 +117,6 @@ type ContainerSpec struct {
 	CapabilityDrop []string            `json:",omitempty"`
 	Ulimits        []*container.Ulimit `json:",omitempty"`
 	OomScoreAdj    int64               `json:",omitempty"`
+	// Runtime specifies the runtime to use for the container (e.g., "runc", "runsc" for gVisor).
+	Runtime        string              `json:",omitempty"`
 }

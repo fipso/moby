@@ -260,3 +260,5 @@ require (
 replace github.com/moby/moby/api => ./api
 
 replace github.com/moby/moby/client => ./client
+
+replace github.com/moby/swarmkit/v2 => github.com/fipso/swarmkit/v2 v2.0.0-20260106084650-bff2b64647f0
