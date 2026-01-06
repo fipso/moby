@@ -1089,7 +1089,7 @@ github.com/moby/profiles/seccomp
 # github.com/moby/pubsub v1.0.0
 ## explicit; go 1.19
 github.com/moby/pubsub
-# github.com/moby/swarmkit/v2 v2.1.2-0.20251110192100-17b8d222e7dd
+# github.com/moby/swarmkit/v2 v2.1.2-0.20251110192100-17b8d222e7dd => github.com/fipso/swarmkit/v2 v2.0.0-20260106084650-bff2b64647f0
 ## explicit; go 1.24.0
 github.com/moby/swarmkit/v2/agent
 github.com/moby/swarmkit/v2/agent/configs
@@ -1912,3 +1912,4 @@ tags.cncf.io/container-device-interface/pkg/parser
 tags.cncf.io/container-device-interface/specs-go
 # github.com/moby/moby/api => ./api
 # github.com/moby/moby/client => ./client
+# github.com/moby/swarmkit/v2 => github.com/fipso/swarmkit/v2 v2.0.0-20260106084650-bff2b64647f0
