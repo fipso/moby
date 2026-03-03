@@ -312,6 +312,21 @@ func (sb *Sandbox) rebuildDNS() error {
 		return err
 	}
 
+	// When DNS servers are explicitly configured (--dns / DNSConfig),
+	// write them directly to resolv.conf instead of redirecting through
+	// the internal resolver at 127.0.0.11. Needed for runtimes like gVisor
+	// where the host's loopback DNS proxy is unreachable.
+	if len(sb.config.dnsList) > 0 {
+		for _, addr := range rc.NameServers() {
+			sb.extDNS = append(sb.extDNS, extDNSEntry{
+				IPStr:        addr.String(),
+				HostLoopback: false,
+			})
+		}
+		_, sb.ndotsSet = rc.Option("ndots")
+		return rc.WriteFile(sb.config.resolvConfPath, "", filePerm)
+	}
+
 	intNS := sb.resolver.NameServer()
 	if !intNS.IsValid() {
 		return errors.New("no listen-address for internal resolver")
