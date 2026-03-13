@@ -460,12 +460,13 @@ func (c *Cluster) ServiceLogs(ctx context.Context, selector *backend.LogSelector
 
 	// get the since value - the time in the past we're looking at logs starting from
 	var sinceProto *gogotypes.Timestamp
+	var since time.Time
 	if config.Since != "" {
 		s, n, err := timestamp.ParseTimestamps(config.Since, 0)
 		if err != nil {
 			return nil, errors.Wrap(err, "could not parse since timestamp")
 		}
-		since := time.Unix(s, n)
+		since = time.Unix(s, n)
 		sinceProto, err = gogotypes.TimestampProto(since)
 		if err != nil {
 			return nil, errors.Wrap(err, "could not parse timestamp to proto")
@@ -526,6 +527,10 @@ func (c *Cluster) ServiceLogs(ctx context.Context, selector *backend.LogSelector
 				m.Timestamp, err = gogotypes.TimestampFromProto(msg.Timestamp)
 				if err != nil {
 					m.Err = err
+				}
+
+				if !since.IsZero() && m.Timestamp.Before(since) {
+					continue
 				}
 
 				nodeKey := contextPrefix + ".node.id"
