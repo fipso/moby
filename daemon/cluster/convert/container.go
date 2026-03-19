@@ -46,6 +46,7 @@ func containerSpecFromGRPC(c *swarmapi.ContainerSpec) *types.ContainerSpec {
 		Ulimits:        ulimitsFromGRPC(c.Ulimits),
 		OomScoreAdj:    c.OomScoreAdj,
 		Runtime:        c.Runtime,
+		Privileged:     c.Privileged,
 	}
 
 	if c.DNSConfig != nil {
@@ -309,6 +310,7 @@ func containerToGRPC(c *types.ContainerSpec) (*swarmapi.ContainerSpec, error) {
 		Ulimits:        ulimitsToGRPC(c.Ulimits),
 		OomScoreAdj:    c.OomScoreAdj,
 		Runtime:        c.Runtime,
+		Privileged:     c.Privileged,
 	}
 
 	if c.DNSConfig != nil {

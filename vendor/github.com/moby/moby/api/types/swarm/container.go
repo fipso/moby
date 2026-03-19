@@ -119,4 +119,5 @@ type ContainerSpec struct {
 	OomScoreAdj    int64               `json:",omitempty"`
 	// Runtime specifies the runtime to use for the container (e.g., "runc", "runsc" for gVisor).
 	Runtime        string              `json:",omitempty"`
+	Privileged     bool                `json:",omitempty"`
 }

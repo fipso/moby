@@ -425,6 +425,7 @@ func (c *containerConfig) hostConfig(deps exec.VolumeGetter) *container.HostConf
 		CapDrop:        c.spec().CapabilityDrop,
 		OomScoreAdj:    int(c.spec().OomScoreAdj),
 		Runtime:        c.spec().Runtime,
+		Privileged:     c.spec().Privileged,
 	}
 
 	if c.spec().DNSConfig != nil {
