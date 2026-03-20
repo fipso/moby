@@ -261,4 +261,4 @@ replace github.com/moby/moby/api => ./api
 
 replace github.com/moby/moby/client => ./client
 
-replace github.com/moby/swarmkit/v2 => github.com/fipso/swarmkit/v2 v2.0.0-20260319124434-e88661d08f57
+replace github.com/moby/swarmkit/v2 => github.com/fipso/swarmkit/v2 v2.0.0-20260320090815-ca500a57174b
